@@ -26,6 +26,11 @@ PUSHOVER_USER_KEY=
 PUSHOVER_APP_TOKEN=
 ```
 
+Codex installs and runs the plugin bundle, but hook-only plugins do not get a
+generic Codex-managed secret-entry flow. Create `.pushover.env` yourself on each
+machine that should send Pushover notifications, or point `pushover_env_path` /
+`CODEX_PUSHOVER_ENV` at a file you manage.
+
 See `docs/privacy.md` for what is sent to Pushover, what is stored locally, and
 which settings reduce stored or sent content.
 

@@ -33,7 +33,9 @@ content. Treat them as private by default.
 ## Local Credentials
 
 Credentials should live in `.pushover.env` under `PLUGIN_DATA` or
-`~/.codex/codex-notify/`. Do not commit this file.
+`~/.codex/codex-notify/`. Codex does not create this provider credential file
+for you; create it locally on each machine that should send notifications. Do
+not commit this file.
 
 If credentials are accidentally committed or shared, rotate the Pushover app
 token and/or user key immediately.

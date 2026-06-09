@@ -74,6 +74,10 @@ printf 'PUSHOVER_USER_KEY=\nPUSHOVER_APP_TOKEN=\n' \
   > ~/.codex/codex-notify/.pushover.env
 ```
 
+Codex installs the plugin bundle, but it does not create provider credential
+files for hook-only plugins. Codex Notify's current provider is Pushover, so
+you create this local file once on each machine that should send notifications.
+
 4. Fill in your Pushover credentials:
 
 ```env
@@ -127,6 +131,11 @@ For local development from this checkout,
 When installed, Codex also provides `PLUGIN_DATA`. The hook checks
 `PLUGIN_DATA/config.toml` and `PLUGIN_DATA/.pushover.env` first, then falls
 back to `~/.codex/codex-notify/`.
+
+The stable fallback path is documented because the exact `PLUGIN_DATA` path is
+managed by Codex and includes marketplace-specific naming. Put credentials in
+`~/.codex/codex-notify/.pushover.env` unless you intentionally want to manage a
+custom path with `pushover_env_path` or `CODEX_PUSHOVER_ENV`.
 
 ## Confirm It Worked
 

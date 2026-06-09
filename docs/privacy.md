@@ -10,7 +10,8 @@ locally.
 - Codex Notify runs locally as a Codex hook.
 - Notification text is sent to Pushover so Pushover can deliver it to your
   devices.
-- Pushover credentials stay in your local `.pushover.env` file.
+- Pushover credentials stay in a local `.pushover.env` file that you create on
+  each machine that should send notifications.
 - Local SQLite history is enabled by default so you can inspect notification
   quality later.
 - You can reduce sent fields, keep history metadata only, or disable history
