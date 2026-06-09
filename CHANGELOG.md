@@ -35,6 +35,8 @@ Release candidate for public GitHub/repo-marketplace distribution.
   and a clean onboarding path before reference details.
 - Quick start now asks Codex to run the credential setup helper instead of
   asking users to hand-author a hidden env file.
+- Agent instructions now spell out how Codex should run credential setup
+  without collecting secrets in chat.
 - Default task summary mode is local and does not require API keys.
 - Notification body formatting strips Markdown that Pushover does not render.
 - GitHub PR URLs are sent through Pushover's explicit `url` and `url_title`

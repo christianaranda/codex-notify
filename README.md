@@ -89,6 +89,14 @@ Codex installs the plugin bundle, but hook-only plugins do not currently get a
 generic provider-secret form. Codex Notify keeps using a simple local env file;
 the setup helper creates it for you with restrictive file permissions.
 
+What Codex should do for that setup prompt:
+
+- Run the bundled helper in an interactive terminal.
+- Ask you to type secrets into the terminal, not into chat.
+- Create or update `~/.codex/codex-notify/.pushover.env`.
+- Never print the credential values.
+- Ask before replacing an existing credential file.
+
 4. Run a dry-run turn. This proves the hook runs without sending to Pushover:
 
 ```bash

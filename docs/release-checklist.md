@@ -102,6 +102,9 @@ CODEX_PUSHOVER_SAMPLE=1 codex exec \
 - README explains why the plugin exists, what users get, and the expected
   successful onboarding outcome before it dives into reference details.
 - README install instructions match current Codex hook behavior.
+- README and the bundled skill both describe the agent-assisted credential
+  setup path: terminal prompt, no secrets in chat, and explicit approval before
+  replacing an existing env file.
 - README clearly says this is a community GitHub/repo-marketplace plugin, not an
   OpenAI-curated Plugin Directory listing.
 - `docs/configuration.md` starts with common recipes before the full option
