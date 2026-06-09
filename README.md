@@ -66,26 +66,30 @@ codex plugin marketplace add christianaranda/codex-notify
    If Codex asks you to review hooks, run `/hooks`, inspect the command, and
    trust it if it points at this plugin.
 
-3. Create the Pushover credential file:
+3. Ask Codex to set up the Pushover credentials:
+
+```text
+Use Codex Notify to set up Pushover credentials on this Mac. Locate and run the bundled setup_pushover_credentials.py helper. Ask me to type the Pushover user key and app token into the terminal; do not ask me to paste secrets into chat.
+```
+
+The helper prompts in the terminal and creates:
+
+```text
+~/.codex/codex-notify/.pushover.env
+```
+
+If you are setting up from this checkout instead of an installed plugin, Codex
+can run:
 
 ```bash
-mkdir -p ~/.codex/codex-notify
-printf 'PUSHOVER_USER_KEY=\nPUSHOVER_APP_TOKEN=\n' \
-  > ~/.codex/codex-notify/.pushover.env
+python3 plugins/codex-notify/tools/setup_pushover_credentials.py
 ```
 
-Codex installs the plugin bundle, but it does not create provider credential
-files for hook-only plugins. Codex Notify's current provider is Pushover, so
-you create this local file once on each machine that should send notifications.
+Codex installs the plugin bundle, but hook-only plugins do not currently get a
+generic provider-secret form. Codex Notify keeps using a simple local env file;
+the setup helper creates it for you with restrictive file permissions.
 
-4. Fill in your Pushover credentials:
-
-```env
-PUSHOVER_USER_KEY=
-PUSHOVER_APP_TOKEN=
-```
-
-5. Run a dry-run turn. This proves the hook runs without sending to Pushover:
+4. Run a dry-run turn. This proves the hook runs without sending to Pushover:
 
 ```bash
 CODEX_NOTIFY_DRY_RUN=1 CODEX_NOTIFY=always codex exec \
@@ -94,7 +98,7 @@ CODEX_NOTIFY_DRY_RUN=1 CODEX_NOTIFY=always codex exec \
   "Reply exactly: dry run complete"
 ```
 
-6. Send one explicit sample notification:
+5. Send one explicit sample notification:
 
 ```bash
 CODEX_PUSHOVER_SAMPLE=1 codex exec \
@@ -133,9 +137,9 @@ When installed, Codex also provides `PLUGIN_DATA`. The hook checks
 back to `~/.codex/codex-notify/`.
 
 The stable fallback path is documented because the exact `PLUGIN_DATA` path is
-managed by Codex and includes marketplace-specific naming. Put credentials in
-`~/.codex/codex-notify/.pushover.env` unless you intentionally want to manage a
-custom path with `pushover_env_path` or `CODEX_PUSHOVER_ENV`.
+managed by Codex and includes marketplace-specific naming. The setup helper
+creates `~/.codex/codex-notify/.pushover.env`; use `pushover_env_path` or
+`CODEX_PUSHOVER_ENV` only if you intentionally want to manage a custom path.
 
 ## Confirm It Worked
 
@@ -200,7 +204,8 @@ This plugin stores local runtime data:
 - `notify.log`: JSONL diagnostics.
 - `notify_state.sqlite3`: duplicate-suppression state.
 - `notify_history.sqlite3`: rendered notification title/body and metadata.
-- `.pushover.env`: local Pushover credentials.
+- `.pushover.env`: local Pushover credentials, normally created by the bundled
+  setup helper.
 
 It does not intentionally store raw transcript content, and it does not store
 Pushover credentials in SQLite. Notification history does store the rendered
@@ -233,8 +238,9 @@ scrolling, and a rendered message preview.
   with `/hooks`.
 - Hooks disabled: make sure `[features].hooks` is not set to `false` by your
   user config, project config, or workspace requirements.
-- Missing credentials: create `.pushover.env` with `PUSHOVER_USER_KEY` and
-  `PUSHOVER_APP_TOKEN`.
+- Missing credentials: ask Codex to run the bundled
+  `setup_pushover_credentials.py` helper, or run it from this checkout with
+  `python3 plugins/codex-notify/tools/setup_pushover_credentials.py`.
 - Dry run works but live send does not: check `notify.log` for Pushover API
   errors and confirm the user key/app token belong to the same Pushover account.
 - Duplicate suppression: remove `notify_state.sqlite3` from the plugin data

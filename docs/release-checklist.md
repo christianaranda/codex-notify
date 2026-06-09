@@ -9,6 +9,8 @@ announcing the plugin publicly.
   version, display name, license, and hook path.
 - `plugins/codex-notify/hooks/hooks.json` invokes the hook through
   `PLUGIN_ROOT` and has a timeout that covers the default delivery budget.
+- `plugins/codex-notify/tools/setup_pushover_credentials.py` is included and
+  creates the credential env file without printing secret values.
 - `.agents/plugins/marketplace.json` points at `./plugins/codex-notify`
   for repo-marketplace installs.
 - No secrets, local logs, SQLite files, or backup files are tracked.
@@ -24,7 +26,9 @@ python3 -c 'import json; [json.load(open(p)) for p in [
 ]]'
 python3 -m py_compile \
   plugins/codex-notify/hooks/codex_notify.py \
+  plugins/codex-notify/tools/setup_pushover_credentials.py \
   tools/notification_history_server.py \
+  tests/test_setup_pushover_credentials.py \
   tests/test_notification_history_server.py
 python3 -m unittest discover -s tests
 ```
@@ -74,15 +78,14 @@ CODEX_NOTIFY_DRY_RUN=1 CODEX_NOTIFY=always codex exec \
 ```
 
 8. Confirm `notify.log` contains `dry_run_publish` and `sent`.
-9. Add real Pushover credentials:
+9. Ask Codex to set up real Pushover credentials:
 
-```bash
-mkdir -p ~/.codex/codex-notify
-printf 'PUSHOVER_USER_KEY=\nPUSHOVER_APP_TOKEN=\n' \
-  > ~/.codex/codex-notify/.pushover.env
+```text
+Use Codex Notify to set up Pushover credentials on this Mac. Locate and run the bundled setup_pushover_credentials.py helper. Ask me to type the Pushover user key and app token into the terminal; do not ask me to paste secrets into chat.
 ```
 
-10. Fill in `~/.codex/codex-notify/.pushover.env` and send one explicit sample:
+10. Confirm `~/.codex/codex-notify/.pushover.env` exists without printing its
+    values, then send one explicit sample:
 
 ```bash
 CODEX_PUSHOVER_SAMPLE=1 codex exec \

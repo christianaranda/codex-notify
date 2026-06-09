@@ -26,11 +26,15 @@ Release candidate for public GitHub/repo-marketplace distribution.
 - Optional local or Codex-backed prompt summarization.
 - Public documentation for install, configuration, troubleshooting, privacy,
   release checks, security reporting, and issue reports.
+- Bundled Pushover credential setup helper that prompts locally and creates the
+  `.pushover.env` file for users.
 
 ### Changed
 
 - Public documentation now leads with why Codex Notify exists, what users get,
   and a clean onboarding path before reference details.
+- Quick start now asks Codex to run the credential setup helper instead of
+  asking users to hand-author a hidden env file.
 - Default task summary mode is local and does not require API keys.
 - Notification body formatting strips Markdown that Pushover does not render.
 - GitHub PR URLs are sent through Pushover's explicit `url` and `url_title`

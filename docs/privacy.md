@@ -10,8 +10,8 @@ locally.
 - Codex Notify runs locally as a Codex hook.
 - Notification text is sent to Pushover so Pushover can deliver it to your
   devices.
-- Pushover credentials stay in a local `.pushover.env` file that you create on
-  each machine that should send notifications.
+- Pushover credentials stay in a local `.pushover.env` file created by the
+  bundled setup helper on each machine that should send notifications.
 - Local SQLite history is enabled by default so you can inspect notification
   quality later.
 - You can reduce sent fields, keep history metadata only, or disable history
@@ -50,7 +50,8 @@ The stable fallback path is:
 
 Files:
 
-- `.pushover.env`: local Pushover credentials.
+- `.pushover.env`: local Pushover credentials, normally created by the bundled
+  setup helper.
 - `config.toml`: optional local plugin configuration.
 - `notify.log`: JSONL diagnostics.
 - `notify_state.sqlite3`: duplicate-suppression state keyed by Codex turn id.
@@ -120,7 +121,9 @@ history database and have your own access controls in place.
 ## Credentials
 
 Do not commit `.pushover.env`. The repo `.gitignore` excludes `.pushover.env`,
-`notify.log`, and `*.sqlite3`.
+`notify.log`, and `*.sqlite3`. When setting up credentials through Codex, type
+the values into the terminal prompt from the bundled helper instead of pasting
+secrets into chat.
 
 If you accidentally commit or share Pushover credentials, revoke and rotate the
 Pushover application token and/or user key immediately.

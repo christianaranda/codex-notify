@@ -27,9 +27,16 @@ PUSHOVER_APP_TOKEN=
 ```
 
 Codex installs and runs the plugin bundle, but hook-only plugins do not get a
-generic Codex-managed secret-entry flow. Create `.pushover.env` yourself on each
-machine that should send Pushover notifications, or point `pushover_env_path` /
-`CODEX_PUSHOVER_ENV` at a file you manage.
+generic Codex-managed provider-secret form. Use the bundled setup helper so
+Codex prompts for the values in the terminal and creates
+`~/.codex/codex-notify/.pushover.env` for you:
+
+```bash
+python3 plugins/codex-notify/tools/setup_pushover_credentials.py
+```
+
+If you use a different credential file path, point `pushover_env_path` /
+`CODEX_PUSHOVER_ENV` at the file you manage.
 
 See `docs/privacy.md` for what is sent to Pushover, what is stored locally, and
 which settings reduce stored or sent content.

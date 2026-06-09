@@ -16,7 +16,7 @@
   "interface": {
     "displayName": "Codex Notify",
     "shortDescription": "Useful notifications for completed Codex turns.",
-    "longDescription": "Runs a Codex lifecycle hook at turn completion and sends notifications that help you decide whether to return now or later. Notifications can include status, prompt/result summaries, verification signals, repository metadata, PR links, and local history. The first release candidate ships with a Pushover delivery provider.",
+    "longDescription": "Runs a Codex lifecycle hook at turn completion and sends notifications that help you decide whether to return now or later. Notifications can include status, prompt/result summaries, verification signals, repository metadata, PR links, and local history. The first release candidate ships with a Pushover delivery provider and a setup helper for local Pushover credentials.",
     "developerName": "Christian Aranda",
     "category": "Productivity",
     "capabilities": [
@@ -24,6 +24,7 @@
       "Notifications"
     ],
     "defaultPrompt": [
+      "Use Codex Notify to set up Pushover credentials on this Mac.",
       "Use Codex Notify to test my notification hook.",
       "Use Codex Notify to explain recent notification logs."
     ],
