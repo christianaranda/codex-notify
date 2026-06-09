@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate plugin manifests
+        run: |
+          python3 - <<'PY'
+          import json
+
+          for path in [
+              ".agents/plugins/marketplace.json",
+              "plugins/codex-notify/.codex-plugin/plugin.json",
+              "plugins/codex-notify/hooks/hooks.json",
+          ]:
+              with open(path, encoding="utf-8") as handle:
+                  json.load(handle)
+          PY
+      - name: Check runtime files and obvious secrets
+        run: |
+          set -euo pipefail
+          runtime_files="$(find . -path ./.git -prune -o \( -name '*.sqlite3' -o -name '.pushover.env' -o -name 'notify.log' \) -print)"
+          if [ -n "$runtime_files" ]; then
+            echo "Runtime files must not be committed:"
+            echo "$runtime_files"
+            exit 1
+          fi
+          if grep -RInE "(sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|cr-[A-Za-z0-9]{20,}|PUSHOVER_(USER_KEY|APP_TOKEN)=[\"']?[A-Za-z0-9]{20,})" -- README.md docs plugins tests .github .agents; then
+            echo "Potential secret found. Redact or replace with an empty placeholder."
+            exit 1
+          fi
+      - name: Compile hook
+        run: |
+          python3 -m py_compile \
+            plugins/codex-notify/hooks/codex_notify.py \
+            tools/notification_history_server.py \
+            tests/test_notification_history_server.py
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests

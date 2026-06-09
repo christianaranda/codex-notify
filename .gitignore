@@ -1,0 +1,19 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+
+# Local notifier state and secrets
+.pushover.env
+notify.log
+notify_state.sqlite3
+*.sqlite3
+
+# Local build/package output
+dist/
+build/
+*.egg-info/
+
+# Local migration backups
+.local-backups/

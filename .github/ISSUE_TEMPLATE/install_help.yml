@@ -1,0 +1,53 @@
+name: Install help
+description: Get help installing or smoke-testing the plugin.
+title: "[Install]: "
+labels: ["install", "support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this when the plugin does not appear, hooks do not run, or the dry-run smoke test fails. Do not paste Pushover credentials, private prompts, or unredacted logs.
+  - type: input
+    id: marketplace
+    attributes:
+      label: Marketplace source
+      description: Example: christianaranda/codex-notify, local checkout path, or Git URL
+    validations:
+      required: true
+  - type: input
+    id: codex_version
+    attributes:
+      label: Codex version and surface
+      description: Example: Codex app 0.x on macOS, Codex CLI, IDE extension
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: Example: macOS 15.x arm64
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checks completed
+      options:
+        - label: I installed the plugin from the Codex plugin directory.
+        - label: I restarted Codex after installing or updating the plugin.
+        - label: I checked `/hooks` for hook review/trust prompts.
+        - label: I ran the dry-run command from the README.
+        - label: I checked `notify.log`.
+  - type: textarea
+    id: output
+    attributes:
+      label: Relevant output or redacted log excerpt
+      description: Include the failed command output or recent notify.log lines. Redact credentials, private prompts, and private repo names.
+      render: text
+  - type: textarea
+    id: details
+    attributes:
+      label: Where did onboarding stop?
+      description: Tell us the first README quick-start step that did not work as expected.
+    validations:
+      required: true

@@ -1,0 +1,98 @@
+# Copy to PLUGIN_DATA/config.toml after installing the plugin.
+
+enabled = true
+default_policy = "always" # always, long, none
+notify_on_failure = false
+notify_subagents = false
+long_run_seconds = 300
+dedupe_enabled = true
+
+max_title_chars = 160
+max_message_chars = 1024
+max_outcome_chars = 560
+max_task_chars = 220
+task_summary_mode = "local" # local, codex, auto, off
+task_summary_max_chars = 120
+task_summary_codex_command = ""
+task_summary_codex_model = ""
+task_summary_timeout_seconds = 8
+max_verification_chars = 180
+fallback_scope_label = "workspace"
+title_template = "{headline}"
+message_template = "{details}"
+include_duration = true
+include_host = true
+include_model = true
+include_task = true
+include_verification = true
+include_git = true
+git_check_timeout_seconds = 1
+pushover_html = true
+
+attention_status_terms = [
+  "failed",
+  "failure",
+  "error",
+  "errors",
+  "blocked",
+  "unable",
+  "exception",
+  "traceback",
+  "cancelled",
+  "canceled",
+  "could not",
+  "cannot",
+  "can't",
+]
+negated_status_terms = [
+  "no error",
+  "no errors",
+  "no failure",
+  "no failures",
+  "no issue",
+  "no issues",
+  "no blocker",
+  "no blockers",
+  "without error",
+  "without errors",
+  "without failure",
+  "without failures",
+  "without issue",
+  "without issues",
+  "without blocker",
+  "without blockers",
+  "failure mode",
+  "failure modes",
+  "not blocked",
+  "not unable",
+]
+
+always_tags = ["[notify]", "[long-run]"]
+skip_tags = ["[no-notify]", "[notify:none]"]
+
+include_cwds = []
+exclude_cwds = []
+
+# always: do not check app focus
+# when_codex_unfocused: skip when a configured Codex app is frontmost
+focus_policy = "always"
+focus_app_names = ["Codex"]
+focus_unknown_policy = "send" # send, skip
+focus_check_timeout_seconds = 1
+
+retry_attempts = 2
+retry_backoff_seconds = [1, 2]
+http_timeout_seconds = 5
+
+history_enabled = true
+history_db_path = ""
+history_store_messages = true
+history_retention_days = 90
+
+pushover_priority = 0
+pushover_sound = ""
+pushover_device = ""
+
+# Optional overrides. By default these live under PLUGIN_DATA.
+pushover_env_path = ""
+state_db_path = ""

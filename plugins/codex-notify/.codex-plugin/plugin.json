@@ -1,0 +1,32 @@
+{
+  "name": "codex-notify",
+  "version": "1.0.0-rc.1",
+  "description": "Useful notifications when a Codex turn finishes.",
+  "author": {
+    "name": "Christian Aranda"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "pushover",
+    "notifications"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Codex Notify",
+    "shortDescription": "Useful notifications for completed Codex turns.",
+    "longDescription": "Runs a Codex lifecycle hook at turn completion and sends notifications that help you decide whether to return now or later. Notifications can include status, prompt/result summaries, verification signals, repository metadata, PR links, and local history. The first release candidate ships with a Pushover delivery provider.",
+    "developerName": "Christian Aranda",
+    "category": "Productivity",
+    "capabilities": [
+      "Hooks",
+      "Notifications"
+    ],
+    "defaultPrompt": [
+      "Use Codex Notify to test my notification hook.",
+      "Use Codex Notify to explain recent notification logs."
+    ],
+    "brandColor": "#3B82F6"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/sh -lc 'if [ -n \"$PLUGIN_ROOT\" ] && [ -f \"$PLUGIN_ROOT/hooks/codex_notify.py\" ]; then /usr/bin/env python3 \"$PLUGIN_ROOT/hooks/codex_notify.py\"; fi'",
+            "timeout": 30,
+            "statusMessage": "Processing Codex Notify"
+          }
+        ]
+      }
+    ]
+  }
+}
