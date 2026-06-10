@@ -275,8 +275,6 @@ python3 -m py_compile \
 python3 -m unittest discover -s tests
 ```
 
-Use `docs/release-checklist.md` before tagging or announcing a release.
-
 ## More Docs
 
 - Need to tune notification behavior: `docs/configuration.md`.
