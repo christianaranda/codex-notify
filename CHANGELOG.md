@@ -37,6 +37,8 @@ Release candidate for public GitHub/repo-marketplace distribution.
   asking users to hand-author a hidden env file.
 - Agent instructions now spell out how Codex should run credential setup
   without collecting secrets in chat.
+- README now explains why Pushover is the first delivery provider and how Codex
+  Notify can grow to other delivery channels.
 - Default task summary mode is local and does not require API keys.
 - Notification body formatting strips Markdown that Pushover does not render.
 - GitHub PR URLs are sent through Pushover's explicit `url` and `url_title`

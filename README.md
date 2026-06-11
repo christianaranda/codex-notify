@@ -34,6 +34,21 @@ Enjoy life while your agents work without checking your computer or ChatGPT.
 - Local SQLite notification history so you can review and improve message
   quality over time.
 
+## Why Pushover First
+
+Codex Notify is the notification layer; Pushover is the first delivery provider.
+It was chosen for this release candidate because it is simple to set up, has a
+stable HTTP API, supports mobile push notifications with title/body/link fields,
+and does not require Codex Notify to run a hosted service or ask for broad
+account access.
+
+The notifier is intentionally structured so the delivery provider can change
+without changing the core hook behavior. Future providers could deliver the
+same normalized notification through other channels, such as webhooks, chat,
+email, native desktop notifications, or another push service. RC1 only ships
+with Pushover so the first public release can keep the setup and failure modes
+small.
+
 ## Requirements
 
 - Codex with plugin and hook support.
