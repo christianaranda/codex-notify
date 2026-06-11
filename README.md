@@ -34,20 +34,23 @@ Enjoy life while your agents work without checking your computer or ChatGPT.
 - Local SQLite notification history so you can review and improve message
   quality over time.
 
-## Why Pushover First
+## Why Pushover
 
-Codex Notify is the notification layer; Pushover is the first delivery provider.
-It was chosen for this release candidate because it is simple to set up, has a
-stable HTTP API, supports mobile push notifications with title/body/link fields,
-and does not require Codex Notify to run a hosted service or ask for broad
-account access.
+When I started writing this with the help of Codex, it recommended using
+Pushover. I initially didn't want to layer on a 3rd party app to support this
+pet project, but after looking at Pushover I found it's the perfect companion
+for this purpose.
+
+Pushover is easy to set up, has a free trial, supports multiple apps and API
+keys, and is available for iOS and Android. I have no relationship with Pushover,
+I just think it's great. I hope you enjoy it as well but if you don't, you're
+welcome to integrate with whatever notification surface you want and are
+encouraged to open a PR and I'll add it.
 
 The notifier is intentionally structured so the delivery provider can change
 without changing the core hook behavior. Future providers could deliver the
 same normalized notification through other channels, such as webhooks, chat,
-email, native desktop notifications, or another push service. RC1 only ships
-with Pushover so the first public release can keep the setup and failure modes
-small.
+email, native desktop notifications, or another push service.
 
 ## Requirements
 
